@@ -35,22 +35,32 @@ public class Show {
         }
     }
 
-    public void replaceActor(Actor replacement, String surname) { //замена актёра в спектакле
-        if (!listOfActors.isEmpty()) {
-            Actor targetActor = null;
-            for (Actor actor : listOfActors) {
-                if (surname.equals(actor.getSurname())){
-                    targetActor = actor;
-                }
-            }
+    public void replaceActor(Actor replacement, String name, String surname) { //замена актёра в спектакле
+        if (listOfActors.isEmpty()) {
+            System.out.println("В спектакле " + getTitle() + " пока нет актёров!");
+            return;
+        }
 
-            if (targetActor != null){
-                listOfActors.remove(targetActor);
-                listOfActors.add(replacement);
-            } else {
-                System.out.println("Актёра " + surname + " нет в спектакле " + title + "!");
+        Actor targetActor = null;
+        for (Actor actor : listOfActors) {
+            if (surname.equals(actor.getSurname()) && (name.equals(actor.getName()))) {
+                targetActor = actor;
             }
         }
+
+        if (targetActor == null) {
+            System.out.println("Актёра " + surname + " нет в спектакле " + title + "!");
+            return;
+        }
+
+        if (targetActor.hashCode() == replacement.hashCode() && targetActor.equals(replacement)) {
+            System.out.println("Актёр " + surname + " уже играет в спектакле! Замена невозможна!");
+            return;
+        }
+
+        listOfActors.remove(targetActor);
+        listOfActors.add(replacement);
+        System.out.println("НОВЫЙ СОСТАВ!");
     }
 
     public String getTitle() {

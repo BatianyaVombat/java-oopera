@@ -33,6 +33,9 @@ public class Main {
                         " и превращается в принца.\nВместе они путешествуют через сказочный зимний лес в страну сладостей, " +
                         "где празднуют победу", choreographer);
 
+        MusicalShow broadwayShow = new MusicalShow("Кошки", 120, director1, listOfActors, musicAuthor,
+                "Кошки мяукают и веселятся");
+
         //---------------Распределение актёров-----------------
         musicalShow.addActor(actor1);
         musicalShow.addActor(actor2);
@@ -53,18 +56,25 @@ public class Main {
         System.out.println("-".repeat(10) + "\n");
 
         //-------------------Замена актёра---------------------
-        opera.replaceActor(actor1, "Аронова");
-        System.out.println("НОВЫЙ СОСТАВ!");
+        opera.replaceActor(actor1, "Мария", "Аронова");
         opera.printListOfActors();
         System.out.println("-".repeat(10) + "\n");
 
         //-------------Попытка замены актёра null---------------
-        musicalShow.replaceActor(actor3, "Папанов");
+        musicalShow.replaceActor(actor3, "Анатолий","Папанов");
         System.out.println("-".repeat(10) + "\n");
 
         //-------------------Вывод либретто---------------------
         System.out.println(opera.getLibrettoText());
         System.out.println("-".repeat(10));
         System.out.println(ballet.getLibrettoText());
+        System.out.println("-".repeat(10));
+
+        //----Попытка заменить актёра в пустом спектакле--------
+        broadwayShow.replaceActor(actor1,  "Рыжая", "Кошка");
+        System.out.println("-".repeat(10));
+
+        //----Попытка заменить актёра который уже играет--------
+        musicalShow.replaceActor(actor1, "Владимир", "Высоцкий");
     }
 }
